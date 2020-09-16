@@ -190,6 +190,13 @@ public class TechCrateController {
 		}
 		return "";
 	}
+	//userCount
+	@PostMapping("/userVisitCount")
+	public String userCount() {
+		return (this.techService.setUserVisitCount()).toString();
+		
+	}
+	
 
 	
 }

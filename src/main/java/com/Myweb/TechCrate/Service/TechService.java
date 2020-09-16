@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.Myweb.TechCrate.Entites.UserQuery;
 import com.Myweb.TechCrate.Entites.UserRating;
+import com.Myweb.TechCrate.Entites.Usercount;
+import com.Myweb.TechCrate.Repository.UserCount;
 import com.Myweb.TechCrate.Repository.UserRatingRepo;
 import com.Myweb.TechCrate.Repository.UserRepository;
 
@@ -33,6 +35,23 @@ public class TechService {
 		return this.userRate.save(ur); 
 		//return null;
 		
+	}
+	//user visit Count
+	@Autowired
+	private UserCount userRepo;
+	public Integer setUserVisitCount() {
+		Usercount uc;
+		try {
+		 uc = userRepo.findById(1).get();
+		}catch(Exception e) {
+			uc = new Usercount();
+			uc.setId(1);
+			uc.setCount(0);
+		}
+		
+			uc.setCount(uc.getCount()+1);
+	
+		return (userRepo.save(uc)).getCount();
 	}
 	
 }
